@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# This assumes you are using OSX, and want to copy to your local sites dir
+# Script copies dir into apache sites dir
+
+if [ $# -ne 1 ]       
+then
+    echo 'Usage: Specify dir name'
+    exit 1
+fi
+
+DIR=$1
+
+if [ -d $HOME/Sites/$DIR ]
+then
+	echo "$DIR exists in apache, deleting..."
+	rm -rf $HOME/Sites/$DIR
+else
+	echo "$DIR does not exist in apache - no cleanup required"
+fi
+
+if [ -d $DIR ]
+then
+	echo "$DIR exists, copying to apache..."
+	cp -R $DIR $HOME/Sites 
+else
+	echo "$DIR does not exist - not copying"
+fi
