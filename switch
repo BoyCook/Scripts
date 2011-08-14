@@ -1,0 +1,43 @@
+#!/bin/bash 
+#
+# Office/home config switcher
+# $Id switch.sh BoyCook $
+
+function die() {
+     echo $*
+     exit 1
+}
+
+if [ $# -ne 1 ]
+then
+    die "Usage: $0 Specify Switch"
+fi
+
+SWITCH=$1
+
+case $SWITCH in
+'home' | 'on')
+  echo "Setting config files for home..."
+  sudo cp $HOME/bin/scripts/config/hosts_home /etc/hosts
+  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
+  sudo cp $HOME/bin/scripts/config/settings_home.xml $HOME/.m2/settings.xml
+  ;;
+'office' | 'off')
+  echo "Setting config files for office..."
+  sudo cp $HOME/bin/scripts/config/hosts_office /etc/hosts
+  sudo cp $HOME/bin/scripts/config/servers_office $HOME/.subversion/servers
+  sudo cp $HOME/bin/scripts/config/settings_office.xml $HOME/.m2/settings.xml
+  ;;
+'out' | 'red')
+  echo "Setting config files for redside..."
+  sudo cp $HOME/bin/scripts/config/hosts_red /etc/hosts
+  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
+  sudo cp $HOME/bin/scripts/config/settings_home.xml $HOME/.m2/settings.xml
+  ;;
+'cccsdown' | 'down')
+  echo "Setting config files for cccs down..."
+  sudo cp $HOME/bin/scripts/config/hosts_red /etc/hosts
+  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
+  sudo cp $HOME/bin/scripts/config/settings_simple.xml $HOME/.m2/settings.xml
+  ;;
+esac
