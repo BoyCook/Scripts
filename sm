@@ -1,0 +1,6 @@
+#!/bin/bash 
+#
+# SVN diff
+# $Id sdsh BoyCook $
+
+svn diff | grep M 
