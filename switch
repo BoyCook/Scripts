@@ -19,25 +19,29 @@ case $SWITCH in
 'home' | 'on')
   echo "Setting config files for home..."
   sudo cp $HOME/bin/scripts/config/hosts_home /etc/hosts
-  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
+  sudo cp $HOME/bin/scripts/config/gitconfig_home $HOME/.gitconfig
   sudo cp $HOME/bin/scripts/config/settings_home.xml $HOME/.m2/settings.xml
+#  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
   ;;
 'office' | 'off')
   echo "Setting config files for office..."
-  sudo cp $HOME/bin/scripts/config/hosts_office /etc/hosts
-  sudo cp $HOME/bin/scripts/config/servers_office $HOME/.subversion/servers
+  sudo cp $HOME/bin/scripts/config/hosts_red /etc/hosts
+  sudo cp $HOME/bin/scripts/config/gitconfig_office $HOME/.gitconfig
   sudo cp $HOME/bin/scripts/config/settings_office.xml $HOME/.m2/settings.xml
+#  sudo cp $HOME/bin/scripts/config/servers_office $HOME/.subversion/servers
   ;;
 'out' | 'red')
   echo "Setting config files for redside..."
   sudo cp $HOME/bin/scripts/config/hosts_red /etc/hosts
-  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
+  sudo cp $HOME/bin/scripts/config/gitconfig_home $HOME/.gitconfig
   sudo cp $HOME/bin/scripts/config/settings_home.xml $HOME/.m2/settings.xml
+#  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
   ;;
 'cccsdown' | 'down')
   echo "Setting config files for cccs down..."
   sudo cp $HOME/bin/scripts/config/hosts_red /etc/hosts
-  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
+  sudo cp $HOME/bin/scripts/config/gitconfig_home $HOME/.gitconfig
   sudo cp $HOME/bin/scripts/config/settings_simple.xml $HOME/.m2/settings.xml
+#  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
   ;;
 esac

@@ -19,6 +19,13 @@ sudo htpasswd -m /etc/apache2/dav_svn.passwd <username>
 #Install gem with proxy
 sudo gem install <gem> --http-proxy http://proxy.intra.bt.com:8080
 
+#Export to path in profile
+echo 'export PATH=$PATH:/opt/node/bin' >> ~/.profile
+
+#Reload path
+. ~/.profile
+
 #Disk usage
+du --max-depth=1 /var
 du
 df
