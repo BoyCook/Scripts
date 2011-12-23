@@ -21,6 +21,10 @@
 #
 # == Author
 #   Craig Cook
+#
+# == Copyright
+#   Copyright (c) 2010 Craig Cook. Licensed under the MIT License:
+#   http://www.opensource.org/licenses/mit-license.php
 
 require 'rdoc/usage'
 require 'rexml/document'
