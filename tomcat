@@ -2,7 +2,7 @@
 # This deals with starting and stopping tomcat on a unix based system
 # Options: start
 # 		   stop
-#		   restart	
+#		   restart
 #		   kill
 #		   tail
 

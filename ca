@@ -1,14 +1,5 @@
 #!/bin/sh
 
-# This assumes you are using OSX, and want to copy to your local sites dir
-# Script copies dir into apache sites dir
-
-if [ $# -ne 1 ]       
-then
-    echo 'Usage: Specify dir name'
-    exit 1
-fi
-
 DIR=$1
 
 if [ -d $HOME/Sites/$DIR ]

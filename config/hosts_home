@@ -9,25 +9,4 @@
 ::1             localhost 
 fe80::1%lo0	localhost
 
-192.168.1.4   craigcook.co.uk
-192.168.1.4   www.craigcook.co.uk
-192.168.1.4   whizz-kid.co.uk
-192.168.1.4   www.whizz-kid.co.uk
-192.168.1.4   boy-genius.co.uk
-192.168.1.4   www.boy-genius.co.uk
-192.168.1.4   taxi-bexhill.com
-192.168.1.4   www.taxi-bexhill.com
-192.168.1.4   taxi-bexhill.co.uk
-192.168.1.4   www.taxi-bexhill.co.uk
-192.168.1.4   taxi-bexhill.info
-192.168.1.4   www.taxi-bexhill.info
-192.168.1.4   iamthedaddy.co.uk
-192.168.1.4   www.iamthedaddy.co.uk
-192.168.1.4   makemymovie.co.uk
-192.168.1.4   www.makemymovie.co.uk
-192.168.1.4   cookingbusy.com
-192.168.1.4   www.cookingbusy.com
-192.168.1.4   cookingbusy.co.uk
-192.168.1.4   www.cookingbusy.co.uk
-192.168.1.4   tiddlyroar.org
-192.168.1.4   www.tiddlyroar.org
+192.168.1.2   craigcook.co.uk www.craigcook.co.uk iamthedaddy.co.uk www.iamthedaddy.co.uk

@@ -1,17 +1,5 @@
 #!/bin/sh
 
-if [  -z "$CATALINA_HOME" ]
-then
-	echo 'You must set $CATALINA_HOME'
-	exit
-fi
-
-if [ $# -ne 2 ]       
-then
-    echo 'Usage: tomcat (y/n) artifact (w/c)'
-    exit 1
-fi
-
 TOM=$1
 WEB=$2
 NAME=$3
@@ -21,7 +9,7 @@ function startTomcat() {
 	then
 	   tomcat stop
 	else 
-		echo 'Ignoring tomcat state'
+		echo "Ignoring tomcat state"
 	fi
 }
 
