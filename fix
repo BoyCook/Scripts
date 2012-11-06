@@ -19,9 +19,13 @@ case $SWITCH in
 	rm $HOME/Library/Preferences/com.macromates.textmate.*
   	;;
 'idea' | 'IDEA')
-	rm -rf $HOME/Library/Preferences/com.jetbrains*
-	rm -rf $HOME/Library/Caches/IntelliJIdea10
+	# rm -rf $HOME/Library/Preferences/com.jetbrains*
+	# rm -rf $HOME/Library/Caches/IntelliJIdea10
  	# rm -rf $HOME/Library/Application\ Support/IntelliJ*	
+	# cp -r $HOME/idea/IntelliJIdea11 $HOME/Library/Preferences
+	# cp $HOME/idea/com.jetbrains.intellij.plist $HOME/Library/Preferences
+	# rm -r $HOME/Library/Preferences/IntelliJIdea11
+	# rm $HOME/Library/Preferences/com.jetbrains.intellij.plist
   ;;
 'ideastash' | 'ideastash')
 	mkdir $HOME/ideatemp	
