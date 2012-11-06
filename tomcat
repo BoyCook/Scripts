@@ -1,71 +1,69 @@
 #!/bin/sh
 # This deals with starting and stopping tomcat on a unix based system
 # Options: start
-# 		   stop
-#		   restart
-#		   kill
-#		   tail
+#                  stop
+#                  restart      
+#                  kill
+#                  tail
 
 function die() {
      echo $*
      exit 1
 }
 
-if [ $# -ne 1 ]       
+if [ $# -ne 1 ]
 then
-    die "Usage: $0 Specify an option"
+    die "$0 Specify action"
+fi
+
+if [ ! -d $CATALINA_HOME ]
+then
+    die "Directory $CATALINA_HOME does not exist"
 fi
 
 ACTION=$1
+echo "Using CATALINA_HOME $CATALINA_HOME"
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
+export JRE_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
 
 if [ "$ACTION" == "START" ] || [ "$ACTION" == "start" ] 
 then
 	echo "Starting tomcat..."
 	export JAVA_OPTS="-server -Xms768M -Xmx2048M -XX:MaxPermSize=1024m"
-	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-	export JRE_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
 	$CATALINA_HOME/bin/startup.sh
-	# growlnotify -m "Tomcat Started"
 elif [ "$ACTION" == "STOP" ] || [ "$ACTION" == "stop" ] 	
 then
 	echo "Stopping tomcat..."
-	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-	export JRE_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
 	$CATALINA_HOME/bin/shutdown.sh
-	sleep 2
-	ISIT=`ps -ef  | awk '/[t]omcat/ { print $2 }' | sed -e :a -e '$!N;s/\n/ /;ta'`
-
-	if [ "$ISIT" != "" ]
-	then
-		echo "Tomcat still running - killing process: " $ISIT	
-		echo "Waiting 3..."
-		sleep 1
-		echo "Waiting 2..."
-		sleep 1
-		echo "Waiting 1..."
-		tomcat kill
-	fi	
-	# growlnotify -m "Tomcat Stopped" 
-elif [ "$ACTION" == "CLEAN" ] || [ "$ACTION" == "clean" ] 	
+	# TODO get pid accurately
+	# sleep 1
+	# ISIT=`pidof $CATALINA_HOME`
+	# if [ "$ISIT" != "" ]
+	# then
+	# 	echo "Tomcat still running - killing process ($ISIT)" 
+	# 	tomcat $CATALINA_HOME kill
+	# fi    
+elif [ "$ACTION" == "KILL" ] || [ "$ACTION" == "kill" ]         
 then
-	# growlnotify -m "Tailing Tomcat"	
+	echo 'Killing tomcat...'
+	# kill -9 `pidof $CATALINA_HOME`
+elif [ "$ACTION" == "RESTART" ] || [ "$ACTION" == "restart" ]   
+then
+	echo 'Restarting tomcat...'
+	tomcat $CATALINA_HOME stop
+	tomcat $CATALINA_HOME start
+elif [ "$ACTION" == "PID" ] || [ "$ACTION" == "pid" ]         
+then
+	pidof $CATALINA_HOME
+elif [ "$ACTION" == "CLEAN" ] || [ "$ACTION" == "clean" ]       
+then
+	echo 'Cleaning logs...'
 	rm $CATALINA_HOME/logs/*
-	rm -rf $CATALINA_HOME/webapps/*	
-elif [ "$ACTION" == "KILL" ] || [ "$ACTION" == "kill" ] 	
+	# rm -rf $CATALINA_HOME/webapps/*	
+elif [ "$ACTION" == "TAIL" ] || [ "$ACTION" == "tail" ]         
 then
-	echo "Killing tomcat..."
-	ps -ef  | awk '/[t]omcat/ { print $2 }' | sed -e :a -e '$!N;s/\n/ /;ta' | sudo  xargs kill -9
-	# growlnotify -m "Tomcat Killed"	
-elif [ "$ACTION" == "RESTART" ] || [ "$ACTION" == "restart" ] 	
-then
-	echo "Restarting tomcat..."
-	tomcat stop
-	tomcat start
-elif [ "$ACTION" == "TAIL" ] || [ "$ACTION" == "tail" ] 	
-then
-	# growlnotify -m "Tailing Tomcat"	
+	echo 'Tailing logs...'
 	tail -f $CATALINA_HOME/logs/catalina.out
 else
-	# growlnotify -m "Doing nothing"		
-	echo "Doing nothing"
+	echo "Unknown action ($ACTION) - Doing nothing"
 fi

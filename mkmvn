@@ -1,0 +1,26 @@
+#!/bin/sh
+# This deals with starting and stopping tomcat on a unix based system
+# Options: start
+#                  stop
+#                  restart      
+#                  kill
+#                  tail
+
+function die() {
+     echo $*
+     exit 1
+}
+
+if [ $# -ne 1 ]
+then
+    die "$0 Specify action"
+fi
+
+MODULE=$1
+echo "Creating mvn directories for module $MODULE"
+mkdir $MODULE
+mkdir "$MODULE/src"
+mkdir "$MODULE/src/main"
+mkdir "$MODULE/src/main/java"
+mkdir "$MODULE/src/test"
+mkdir "$MODULE/src/test/java"

@@ -8,6 +8,11 @@ function die() {
      exit 1
 }
 
+function status() {
+  export ENV_STATUS=$*
+  echo "Envionment is set as: ($ENV_STATUS)"	
+}
+
 if [ $# -ne 1 ]
 then
     die "Usage: $0 Specify Switch"
@@ -17,31 +22,38 @@ SWITCH=$1
 
 case $SWITCH in
 'home' | 'on')
-  echo "Setting config files for home..."
+  status $SWITCH
   sudo cp $HOME/bin/scripts/config/hosts_home /etc/hosts
   sudo cp $HOME/bin/scripts/config/gitconfig_home $HOME/.gitconfig
   sudo cp $HOME/bin/scripts/config/settings_home.xml $HOME/.m2/settings.xml
-#  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
   ;;
-'office' | 'off')
-  echo "Setting config files for office..."
+'bt' | 'off')
+  status $SWITCH
   sudo cp $HOME/bin/scripts/config/hosts_red /etc/hosts
   sudo cp $HOME/bin/scripts/config/gitconfig_office $HOME/.gitconfig
   sudo cp $HOME/bin/scripts/config/settings_office.xml $HOME/.m2/settings.xml
-#  sudo cp $HOME/bin/scripts/config/servers_office $HOME/.subversion/servers
   ;;
 'out' | 'red')
-  echo "Setting config files for redside..."
+  status $SWITCH
   sudo cp $HOME/bin/scripts/config/hosts_red /etc/hosts
   sudo cp $HOME/bin/scripts/config/gitconfig_home $HOME/.gitconfig
   sudo cp $HOME/bin/scripts/config/settings_home.xml $HOME/.m2/settings.xml
-#  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
+  ;;
+'logica')
+  status $SWITCH
+  sudo cp $HOME/bin/scripts/config/hosts_red /etc/hosts
+  sudo cp $HOME/bin/scripts/config/gitconfig_home $HOME/.gitconfig
+  sudo cp $HOME/bin/scripts/config/settings_logica.xml $HOME/.m2/settings.xml
   ;;
 'cccsdown' | 'down')
-  echo "Setting config files for cccs down..."
+  status $SWITCH
   sudo cp $HOME/bin/scripts/config/hosts_red /etc/hosts
   sudo cp $HOME/bin/scripts/config/gitconfig_home $HOME/.gitconfig
   sudo cp $HOME/bin/scripts/config/settings_simple.xml $HOME/.m2/settings.xml
-#  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
+  ;;
+'status')
+  echo "Envionment is set as: ($ENV_STATUS)"	
   ;;
 esac
+
+#  sudo cp $HOME/bin/scripts/config/servers_home $HOME/.subversion/servers
