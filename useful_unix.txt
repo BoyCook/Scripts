@@ -27,5 +27,14 @@ echo 'export PATH=$PATH:/opt/node/bin' >> ~/.profile
 
 #Disk usage
 du --max-depth=1 /var
-du
 df
+
+gunzip foo.tar.gz
+tar -zxf foo.tar
+
+#Add users/groups
+dscl
+
+Check which process is using a port
+netstat -pln
+netstat -putan
