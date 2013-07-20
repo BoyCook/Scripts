@@ -26,7 +26,7 @@ echo 'export PATH=$PATH:/opt/node/bin' >> ~/.profile
 . ~/.profile
 
 #Disk usage
-du --max-depth=1 /var
+sudo du --max-depth=1 /var
 df
 
 gunzip foo.tar.gz
@@ -38,3 +38,16 @@ dscl
 Check which process is using a port
 netstat -pln
 netstat -putan
+
+# Git Submodules
+-- Add
+git add submodule {path to git repo} {target dir name}
+-- Remove
+Delete the relevant section from the .gitmodules file.
+Delete the relevant section from .git/config.
+git rm --cached path_to_submodule (no trailing slash).
+
+git clone --recursive git@github.com:BoyCook/CraigCook.git
+git submodule foreach git pull origin master
+git remote set-url origin git@github.com:BoyCook/StringBuilderJS.git
+
