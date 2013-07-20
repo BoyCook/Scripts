@@ -1,7 +1,6 @@
 #!/bin/bash 
-#
-#Crowd install shell script
-# $Id$
+# This creates a svn project structure
+# Options: project name
 
 function die() {
      echo $*

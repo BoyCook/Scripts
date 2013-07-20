@@ -1,10 +1,6 @@
 #!/bin/sh
-# This deals with starting and stopping tomcat on a unix based system
-# Options: start
-#                  stop
-#                  restart      
-#                  kill
-#                  tail
+# This creates a maven project structure
+# Options: project name
 
 function die() {
      echo $*
