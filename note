@@ -3,7 +3,7 @@
 # Script to create a note file for 'today'
 
 # TODAY=$(date +"%Y%m%d%H%M%S")
-TODAY=$(date +"%Y%m%d%H")
+TODAY=$(date +"%Y%m%d")
 NAME=$TODAY
 DIR=$HOME/Desktop
 
@@ -25,4 +25,4 @@ then
 fi
 
 echo "Creating note file $FILE"
-# touch "$FILE"
+touch "$FILE"
